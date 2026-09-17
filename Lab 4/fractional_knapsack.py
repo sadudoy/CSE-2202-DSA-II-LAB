@@ -20,3 +20,5 @@ for i in range(0, len(arr)):
         t_profit += cost
 
 print(t_profit)
+
+

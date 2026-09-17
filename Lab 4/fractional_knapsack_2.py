@@ -1,19 +1,39 @@
-# fractional knapsack without class
+# Fractional Knapsack Without Class
 
-arr = [(100, 20), (60, 10), (100, 50), (200, 50)]
+def fractional_knapsack(value, weight, capacity):
 
-arr.sort(key = lambda x : x[0] / x[1], reverse=True)
-t_profit = current_weight = 0
-w = 90
+    # Store each item
+    arr = []
+    for i in range(len(value)):
+        arr.append((value[i], weight[i]))
 
-for i in range(0, len(arr)):
-    if current_weight+arr[i][1] <= w:
-        current_weight += arr[i][1]
-        t_profit += arr[i][0]
+    # Sort 
+    arr.sort(key=lambda x: x[0] / x[1], reverse=True)
 
-    else:
-        remaining = w - current_weight
-        cost = (arr[i][0] / arr[i][1]) * remaining
-        t_profit += cost
+    t_profit = 0.0
+    current_weight = 0
 
-print(t_profit)
+    # Select items
+    for i in range(len(arr)):
+
+        if current_weight + arr[i][1] <= capacity:
+            current_weight += arr[i][1]
+            t_profit += arr[i][0]
+
+        else:
+            remaining = capacity - current_weight
+            cost = (arr[i][0] / arr[i][1]) * remaining
+            t_profit += cost
+            break
+
+    return t_profit
+
+
+# input
+value = [60, 100, 200, 100]
+weight = [10, 50, 50, 20]
+capacity = 90
+
+profit = fractional_knapsack(value, weight, capacity)
+
+print("Total profit:", profit)
