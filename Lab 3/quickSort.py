@@ -10,7 +10,7 @@ def partition(arr, start, end):
     i = start+1
     j = end
 
-    while i<j:
+    while i<=j:
         while i<end and arr[i] <= pivot:
             i+=1
         while j>start and arr[j] >= pivot:
